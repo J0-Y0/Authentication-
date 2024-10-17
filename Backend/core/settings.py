@@ -18,6 +18,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "unfold",
+    "unfold.contrib.import_export",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -43,6 +45,10 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+if DEBUG:
+    MIDDLEWARE += ("debug_toolbar.middleware.DebugToolbarMiddleware",)
+    INSTALLED_APPS += ("debug_toolbar",)
+
 
 ROOT_URLCONF = "core.urls"
 
@@ -118,7 +124,7 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-AUTH_USER_MODEL = "account.CustomUser"
+AUTH_USER_MODEL = "account.User"
 
 
 # django mail backend setting
